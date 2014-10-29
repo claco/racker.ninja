@@ -1,0 +1,4 @@
+---
+# defaults file for roles/identity
+  identity_credentials: "{{ credentials }}"
+  identity_region: "{{ region }}"

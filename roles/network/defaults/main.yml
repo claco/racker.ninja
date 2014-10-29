@@ -1,0 +1,5 @@
+---
+# defaults file for roles/network
+  network_name:
+  network_cidr: 192.168.3.0/24
+  network_region: "{{ region }}"

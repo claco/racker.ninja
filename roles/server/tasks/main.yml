@@ -1,0 +1,52 @@
+---
+# tasks file for roles/server
+- name: Create {{ server_count }} servers in {{ server_region }}
+  rax:
+    name: "{{ server_name }}"
+    flavor: "{{ server_flavor }}"
+    image: "{{ server_image }}"
+    count: "{{ server_count }}"
+    auto_increment: "{{ server_auto_increment }}"
+    exact_count: yes
+    config_drive: "{{ server_config_drive }}"
+    user_data: "{{ server_user_data }}"
+    key_name: "{{ keypair.keypair.name }}"
+    username: "{{ identity.identity.username }}"
+    api_key: "{{ identity.identity.api_key }}"
+    region: "{{ server_region }}"
+    networks: "{{ server_networks }}"
+    wait: yes
+    state: present
+    group: "{{ server_group }}"
+  register: servers
+
+- name: Add Server to Inventory
+  add_host: name={{ item.accessIPv4 }} groups={{ server_group }} region={{ server_region }}
+  with_items: servers.instances
+
+- name: Add Server to Forward DNS
+  rax_dns_record:
+    username: "{{ identity.identity.username }}"
+    api_key: "{{ identity.identity.api_key }}"
+    region: "{{ server_region }}"
+    domain: "{{ server_domain }}"
+    name: "{{ server_name }}"
+    data: "{{ item.accessIPv4 }}"
+    type: A
+    state: present
+  with_items: servers.instances
+  when: server_domain is defined
+
+
+- name: Add Server to Reverse DNS
+  rax_dns_record:
+    username: "{{ identity.identity.username }}"
+    api_key: "{{ identity.identity.api_key }}"
+    region: "{{ server_region }}"
+    server: "{{ item.id }}"
+    data: "{{ item.accessIPv4 }}"
+    name: "{{ server_name }}"
+    type: PTR
+    state: present
+  with_items: servers.instances
+  when: server_domain is defined

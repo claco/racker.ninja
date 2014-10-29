@@ -1,0 +1,7 @@
+---
+- name: Create Domain
+  hosts: local
+  connection: local
+  gather_facts: False
+  roles:
+    - { role: domain, domain_name: "{{ tld }}", domain_email: "{{ email }}", domain_region: "{{ region }}" }

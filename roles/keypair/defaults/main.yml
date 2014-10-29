@@ -1,0 +1,5 @@
+---
+# defaults file for roles/keypair
+  keypair_name: "{{ lookup('env', 'USER') }}"
+  keypair_file: ~/.ssh/id_rsa.pub
+  keypair_region: "{{ region }}"

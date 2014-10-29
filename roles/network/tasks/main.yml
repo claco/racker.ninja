@@ -1,0 +1,11 @@
+---
+# tasks file for roles/network
+- name: Create Rackspace Network in {{ network_region }}
+  rax_network:
+    username: "{{ identity.identity.username }}"
+    api_key: "{{ identity.identity.api_key }}"
+    label: "{{ network_name }}"
+    cidr: "{{ network_cidr }}"
+    region: "{{ network_region }}"
+    state: present
+  register: network

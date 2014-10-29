@@ -1,0 +1,5 @@
+credentials: ~/.rackspace_credentials
+tld: racker.ninja
+email: claco@chrislaco.com
+region: IAD
+upgrade: false

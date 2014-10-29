@@ -1,0 +1,7 @@
+---
+# tasks file for roles/identity
+- name: Load Rackspace Identity
+  rax_identity:
+    credentials: "{{ identity_credentials }}"
+    region: "{{ identity_region }}"
+  register: identity

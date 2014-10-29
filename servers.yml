@@ -1,0 +1,7 @@
+---
+- name: Provision Servers
+  hosts: local
+  connection: local
+  gather_facts: False
+  roles:
+    - { role: server, server_name: "irc.{{ tld }}", server_region: "{{ region }}", server_image: "CentOS 7 (PVHVM)", server_domain: "{{ tld }}", server_group: irc, server_count: 1, server_auto_increment: false }

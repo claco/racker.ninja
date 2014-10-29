@@ -1,0 +1,12 @@
+---
+# tasks file for roles/domain
+- name: Create Rackspace Domain in {{ domain_region }}
+  rax_dns:
+    username: "{{ identity.identity.username }}"
+    api_key: "{{ identity.identity.api_key }}"
+    name: "{{ domain_name }}"
+    email: "{{ domain_email }}"
+    region: "{{ domain_region }}"
+    ttl: "{{ domain_ttl }}"
+    state: present
+  register: domain

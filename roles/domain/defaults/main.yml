@@ -1,0 +1,6 @@
+---
+# defaults file for roles/domain
+  domain_email: "{{ email }}"
+  domain_name: "{{ tld }}"
+  domain_region: "{{ region }}"
+  domain_ttl: 3600

@@ -1,0 +1,13 @@
+---
+# defaults file for roles/server
+  server_flavor: performance1-1
+  server_image: 08d36361-5f64-4bc8-85ee-1a64a8ec8fd5
+  server_name: server-03d
+  server_auto_increment: true
+  server_domain: "{{ tld }}"
+  server_count: 1
+  server_config_drive: no
+  server_user_data:
+  server_group: servers
+  server_networks: ['public', 'private']
+  server_region: "{{ region }}"

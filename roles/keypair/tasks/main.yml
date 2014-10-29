@@ -1,0 +1,11 @@
+---
+# tasks file for roles/keypair
+- name: Create Rackspace Keypair in {{ keypair_region }}
+  rax_keypair:
+    username: "{{ identity.identity.username }}"
+    api_key: "{{ identity.identity.api_key }}"
+    name: "{{ keypair_name }}"
+    public_key: "{{ lookup('file', keypair_file) }}"
+    region: "{{ keypair_region }}"
+    state: present
+  register: keypair
