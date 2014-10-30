@@ -1,0 +1,46 @@
+---
+# tasks file for roles/znc
+- name: Install Packages
+  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  with_items:
+    - znc
+
+- name: Enable ZNC Service
+  service: name=znc enabled=yes
+
+- name: Create Configuration Directories
+  file: name=/var/lib/znc/.znc/configs owner=znc group=znc recurse=yes state=directory
+
+- name: Create ZNC PEM
+  copy: dest=/var/lib/znc/.znc/znc.pem content="{{ znc_pem }}" owner=znc group=znc
+
+- name: Configure ZNC Service
+  template: src=znc.conf.j2 dest=/var/lib/znc/.znc/configs/znc.conf owner=znc group=znc
+  notify:
+    - Restart ZNC
+
+- name: Create Nickserv Data Directory
+  file: name=/var/lib/znc/.znc/users/claco/networks/freenode/moddata/nickserv owner=znc group=znc recurse=yes state=directory
+
+- name: Configure NickServ Module
+  template: src=nickserv.j2 dest=/var/lib/znc/.znc/users/claco/networks/freenode/moddata/nickserv/.registry owner=znc group=znc
+  notify:
+    - Restart ZNC
+
+- name: Create SASL Data Directory
+  file: name=/var/lib/znc/.znc/users/claco/networks/rackspace/moddata/sasl owner=znc group=znc recurse=yes state=directory
+
+- name: Configure SASL Module
+  template: src=sasl.j2 dest=/var/lib/znc/.znc/users/claco/networks/rackspace/moddata/sasl/.registry owner=znc group=znc
+  notify:
+    - Restart ZNC
+
+- name: Start ZNC Service
+  service: name=znc state=started
+
+# Two tasks pending merge of https://github.com/ansible/ansible/pull/9115
+- name: Redirect HTTPS to ZNC (Running)
+  firewalld: zone=public rich_rule='rule family="ipv4" forward-port port="443" protocol="tcp" to-port="6697"' permanent=false state=enabled
+
+- name: Redirect HTTPS to ZNC (Permenant)
+  firewalld: zone=public rich_rule='rule family="ipv4" forward-port port="443" protocol="tcp" to-port="6697"' permanent=true state=enabled

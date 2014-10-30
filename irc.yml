@@ -1,0 +1,6 @@
+---
+- name: Configure IRC Server
+  hosts: irc
+  gather_facts: False
+  roles:
+    - znc

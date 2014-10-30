@@ -1,0 +1,4 @@
+---
+# handlers file for roles/znc
+- name: Restart ZNC
+  service: name=znc state=restarted
