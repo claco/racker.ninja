@@ -1,4 +1,4 @@
 ---
 # defaults file for roles/fail2ban
 fail2ban_destemail: "{{ email }}"
-fail2ban_sender: root@localhost
+fail2ban_sender: "{{ email }}"
