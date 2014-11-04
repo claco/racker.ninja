@@ -1,0 +1,4 @@
+---
+# handlers file for roles/fail2ban
+- name: Restart Fail2Ban
+  service: name=fail2ban state=restarted

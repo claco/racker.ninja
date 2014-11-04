@@ -1,0 +1,6 @@
+---
+- name: Configure Intrusion Detection
+  hosts: all:!local
+  gather_facts: False
+  roles:
+    - fail2ban
