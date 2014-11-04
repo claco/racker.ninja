@@ -1,0 +1,19 @@
+---
+- name: Configure Users
+  hosts: all:!local
+  gather_facts: False
+  roles:
+    - sudo
+  tasks:
+    - name: Create User Groups
+      group: name="{{ item.key }}" gid={{ item.value.uid }} state=present
+      with_dict: users
+
+    - name: Create Users
+      user: name="{{ item.key }}" password="{{ item.value.password }}" comment="{{ item.value.comment }}" shell="{{ item.value.shell }}" group="{{ item.value.group }}" groups="{{ item.value.groups }}" uid={{ item.value.uid }} state=present
+      with_dict: users
+
+    - name: Configure SSH Keys
+      authorized_key: user="{{ item.key }}" key="{{ lookup('file', item.value.ssh_key) }}"
+      with_dict: users
+      when: item.value.ssh_key is defined

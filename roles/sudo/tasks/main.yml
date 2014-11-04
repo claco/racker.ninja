@@ -1,0 +1,12 @@
+---
+# tasks file for roles/sudo
+- name: Install Packages
+  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  with_items:
+    - sudo
+
+- name: Create Sudoers Group
+  group: name=sudoers state=present
+
+- name: Add Sudoeors Config
+  template: src=sudoers.j2 dest=/etc/sudoers.d/sudoers owner=root group=root
