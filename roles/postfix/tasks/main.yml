@@ -1,0 +1,17 @@
+---
+# tasks file for roles/postfix
+- name: Install Packages
+  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  with_items:
+    - postfix
+
+- name: Enable Postfix Service
+  service: name=postfix enabled=yes
+
+- name: Configure Postfix Service
+  template: src=main.cf.j2 dest=/etc/postfix/main.cf owner=root group=root
+  notify:
+    - Restart Postfix
+
+- name: Start Postfix Service
+  service: name=postfix state=started

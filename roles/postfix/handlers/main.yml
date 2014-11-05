@@ -1,0 +1,4 @@
+---
+# handlers file for roles/postfix
+- name: Restart Postfix
+  service: name=postfix state=restarted

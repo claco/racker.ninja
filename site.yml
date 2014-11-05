@@ -1,5 +1,6 @@
 ---
 - include: provision.yml
+- include: mail.yml
 - include: users.yml
 - include: ids.yml
 - include: irc.yml

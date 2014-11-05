@@ -1,0 +1,6 @@
+---
+- name: Configure Mail Delivery
+  hosts: all:!local
+  gather_facts: False
+  roles:
+    - postfix
