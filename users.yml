@@ -17,3 +17,10 @@
       authorized_key: user="{{ item.key }}" key="{{ lookup('file', item.value.ssh_key) }}"
       with_dict: users
       when: item.value.ssh_key is defined
+
+    - name: Disallow password authentication
+      action: lineinfile dest=/etc/ssh/sshd_config regexp="^PasswordAuthentication" line="PasswordAuthentication no" state=present
+      notify: Restart SSHD
+  handlers:
+    - name: Restart SSHD
+      action: service name=sshd state=restarted
