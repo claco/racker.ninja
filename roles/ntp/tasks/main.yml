@@ -1,0 +1,17 @@
+---
+# tasks file for roles/ntp
+- name: Install Packages
+  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  with_items:
+    - ntp
+
+- name: Enable NTP Service
+  service: name=ntpd enabled=yes
+
+#- name: Configure NTP Service
+  #template: src=ntp.conf.j2 dest=/etc/ntp.conf owner=root group=root
+  #notify:
+    #- Restart NTP
+
+- name: Start NTP Service
+  service: name=ntpd state=started

@@ -12,3 +12,8 @@
 - name: Write upgraded file
   command: touch /root/.ansible.yum.upgraded
   when: not upgraded_file.stat.exists
+
+- name: Install Common Packages
+  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  with_items:
+    - htop

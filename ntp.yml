@@ -1,0 +1,6 @@
+---
+- name: Configure NTP
+  hosts: all:!local
+  gather_facts: False
+  roles:
+    - ntp
