@@ -3,6 +3,7 @@
 - name: Install Packages
   yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
+    - whois
     - fail2ban
 
 - name: Enable Fail2Ban Service
