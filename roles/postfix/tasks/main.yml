@@ -4,6 +4,9 @@
   yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
     - postfix
+    - cyrus-sasl
+    - cyrus-sasl-lib
+    - cyrus-sasl-plain
 
 - name: Enable Postfix Service
   service: name=postfix enabled=yes
