@@ -4,6 +4,7 @@
   yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
     - whois
+    - ipset
     - fail2ban
 
 - name: Enable Fail2Ban Service
@@ -11,6 +12,11 @@
 
 - name: Configure Fail2Ban Service
   template: src=jail.local.j2 dest=/etc/fail2ban/jail.local owner=root group=root
+  notify:
+    - Restart Fail2Ban
+
+- name: Configure FirewallCmd IPSET
+  template: src=firewallcmd-ipset.local.j2 dest=/etc/fail2ban/action.d/firewallcmd-ipset.local owner=root group=root
   notify:
     - Restart Fail2Ban
 

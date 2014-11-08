@@ -56,7 +56,7 @@ ignoreip = 127.0.0.1/8
 ignorecommand =
 
 # "bantime" is the number of seconds that a host is banned.
-bantime  = 10080
+bantime  = {{ fail2ban_bantime }}
 
 # A host is banned if it has generated "maxretry" during the last "findtime"
 # seconds.
@@ -79,7 +79,7 @@ maxretry = 5
 #              See "journalmatch" in the jails associated filter config
 # auto:      will try to use the following backends, in order:
 #              pyinotify, gamin, polling.
-backend = auto
+backend = systemd
 
 # "usedns" specifies if jails should trust hostnames in logs,
 #   warn when DNS lookups are performed, or ignore all hostnames in logs
@@ -148,7 +148,7 @@ port = 0:65535
 # iptables-multiport, shorewall, etc) It is used to define
 # action_* variables. Can be overridden globally or per
 # section within jail.local file
-banaction = iptables-multiport
+banaction = firewallcmd-ipset
 
 # The simplest action to take: ban only
 action_ = %(banaction)s[name=%(__name__)s, port="%(port)s", protocol="%(protocol)s", chain="%(chain)s"]
