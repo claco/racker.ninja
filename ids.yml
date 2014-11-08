@@ -4,3 +4,4 @@
   gather_facts: False
   roles:
     - fail2ban
+    - logcheck
