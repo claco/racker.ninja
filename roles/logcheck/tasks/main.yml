@@ -8,6 +8,14 @@
 - name: Configure LogCheck
   template: src=logcheck.conf.j2 dest=/etc/logcheck/logcheck.conf owner=root group=root
 
+- name: Configure Local Ignore Rules
+  template: src=ignore.d.server/{{ item }}.local.j2 dest=/etc/logcheck/ignore.d.server/{{ item }}.local owner=root group=root
+  with_items:
+    - ssh
+    - systemd
+    - auditd
+    - rsyslogd
+
 - name: Add logcheck to /var/log/messages
   acl: name=/var/log/messages entity=logcheck etype=user permissions=r state=present
 
