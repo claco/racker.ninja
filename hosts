@@ -1,2 +1,2 @@
 [local]
-localhost ansible_connection=local ansible_python_interpreter=/Users/claco/Projects/racker.ninja/.venv/bin/python
+localhost ansible_connection=local
