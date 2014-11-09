@@ -3,3 +3,4 @@
 fail2ban_destemail: "{{ email }}"
 fail2ban_sender: "{{ email }}"
 fail2ban_bantime: 10080
+fail2ban_findtime: 1800
