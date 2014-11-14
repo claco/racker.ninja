@@ -20,7 +20,7 @@ before = iptables-blocktype.conf
 
 actionstart = ipset create fail2ban-<name> hash:ip timeout <bantime>
               firewall-cmd --direct --add-rule ipv4 filter <chain> 0 -p <protocol> -m multiport --dports <port> -m set --match-set fail2ban-<name> src -j <blocktype>
-              touch /etc/fail2ban-<name>.state
+              touch /etc/fail2ban/fail2ban-<name>.state
               ipset restore fail2ban-<name> -exist < /etc/fail2ban/fail2ban-<name>.state
 
 actionstop = firewall-cmd --direct --remove-rule ipv4 filter <chain> 0 -p <protocol> -m multiport --dports <port> -m set --match-set fail2ban-<name> src -j <blocktype>
