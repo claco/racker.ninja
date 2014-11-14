@@ -1,0 +1,6 @@
+---
+- name: Configure Monitoring
+  hosts: all:!local
+  gather_facts: True
+  roles:
+    - monitoring

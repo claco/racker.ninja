@@ -1,0 +1,10 @@
+[Unit]
+Description=Rackspace Cloud Monitoring Agent
+Documentation=http://www.rackspace.com/cloud/cloud_hosting_products/monitoring/
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/rackspace-monitoring-agent -l /var/log/rackspace-monitoring-agent.log --production
+
+[Install]
+WantedBy=multi-user.target

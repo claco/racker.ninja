@@ -1,0 +1,33 @@
+---
+# tasks file for roles/monitoring
+- name: Add Repository Key
+  rpm_key: state=present key=https://monitoring.api.rackspacecloud.com/pki/agent/{{ ansible_distribution | lower }}-{{ ansible_distribution_major_version }}.asc
+
+- name: Add Repository
+  template: src=rackspace-cloud-monitoring.repo.j2 dest=/etc/yum.repos.d/rackspace-cloud-monitoring.repo owner=root group=root mode=0644
+
+- name: Install Packages
+  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  with_items:
+    - rackspace-monitoring-agent
+  register: monitoring_packages
+
+- name: Enable Service
+  service: name=rackspace-monitoring-agent enabled=yes
+
+- name: Remove Default Empty Config
+  file: path=/etc/rackspace-monitoring-agent.cfg state=absent
+  when: monitoring_packages.changed
+
+- name: Remove Init.d Script
+  file: path=/etc/init.d/rackspace-monitoring-agent state=absent
+  when: monitoring_packages.changed
+
+- name: Configure Monitoring Agent
+  command: rackspace-monitoring-agent --setup --username {{ rackspace_username }} --apikey {{ rackspace_apikey }} creates=/etc/rackspace-monitoring-agent.cfg
+
+- name: Configure Service
+  template: src=rackspace-monitoring-agent.service.j2 dest=/etc/systemd/system/rackspace-monitoring-agent.service
+
+- name: Start Service
+  service: name=rackspace-monitoring-agent state=started

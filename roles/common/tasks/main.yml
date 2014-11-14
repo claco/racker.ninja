@@ -16,4 +16,5 @@
 - name: Install Common Packages
   yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
+    - gpg
     - htop

@@ -6,3 +6,4 @@
 - include: users.yml
 - include: ids.yml
 - include: irc.yml
+- include: monitoring.yml
