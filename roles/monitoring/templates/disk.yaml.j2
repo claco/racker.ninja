@@ -1,0 +1,19 @@
+type: agent.disk
+label: Disk
+disabled: false
+period: 60
+timeout: 30
+details:
+  target: /dev/xvda1
+alarms:
+    alarm-disk:
+        label: /dev/xvda1
+        notification_plan_id: npTechnicalContactsEmail
+        criteria: |
+            if (metric['queue'] > 1) {
+              return new AlarmStatus(CRITICAL, '/dev/xvda1 queue is #{queue}, above your critical threshold of 1');
+            }
+            if (metric['queue'] > 0.5) {
+              return new AlarmStatus(WARNING, '/dev/xvda1 queue is #{queue}, above your warning threshold of 0.5');
+            }
+            return new AlarmStatus(OK, '/dev/xvda1 queue is #{queue}, below your warning threshold of 0.5');

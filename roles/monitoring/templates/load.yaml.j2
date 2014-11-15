@@ -1,0 +1,17 @@
+type: agent.load_average
+label: Load Average
+disabled: false
+period: 60
+timeout: 30
+alarms:
+    alarm-load-average:
+        label: High Load Average
+        notification_plan_id: npTechnicalContactsEmail
+        criteria: |
+            if (metric['5m'] > 3) {
+              return new AlarmStatus(CRITICAL, '5 minute load average is #{5m}, above your critical threshold of 3');
+            }
+            if (metric['5m'] > 2) {
+              return new AlarmStatus(WARNING, '5 minute load average is #{5m}, above your warning threshold of 2');
+            }
+            return new AlarmStatus(OK, '5 minute load average is #{5m}, below your warning threshold of 2');

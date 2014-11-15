@@ -28,6 +28,18 @@
 
 - name: Configure Service
   template: src=rackspace-monitoring-agent.service.j2 dest=/etc/systemd/system/rackspace-monitoring-agent.service
+  notify: Restart Monitoring Agent
+
+- name: Configure Checks/Alarms
+  template: src={{ item }}.yaml.j2 dest=/etc/rackspace-monitoring-agent.conf.d/{{ item }}.yaml owner=root group=root mode=0644
+  with_items:
+    - cpu
+    - disk
+    - filesystem
+    - load
+    - memory
+    - network
+  notify: Restart Monitoring Agent
 
 - name: Start Service
   service: name=rackspace-monitoring-agent state=started

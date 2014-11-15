@@ -1,2 +1,4 @@
 ---
 # handlers file for roles/monitoring
+- name: Restart Monitoring Agent
+  service: name=rackspace-monitoring-agent state=restarted

@@ -1,0 +1,30 @@
+type: agent.network
+label: Network (eth0)
+disabled: false
+period: 60
+timeout: 30
+details:
+  target: eth0
+alarms:
+    alarm-network-receive:
+        label: Network Receive Rate
+        notification_plan_id: npTechnicalContactsEmail
+        criteria: |
+            if (rate(metric['rx_bytes']) > 76000) {
+              return new AlarmStatus(CRITICAL, "Network receive rate on eth0 is above your critical threshold of 76000B/s");
+            }
+            if (rate(metric['rx_bytes']) > 56000) {
+              return new AlarmStatus(WARNING, "Network receive rate on eth0 is above your warning threshold of 56000B/s");
+            }
+            return new AlarmStatus(OK, "Network receive rate on eth0 is below your warning threshold of 56000B/s");
+    alarm-network-transmit:
+        label: Network Transmit Rate
+        notification_plan_id: npTechnicalContactsEmail
+        criteria: |
+            if (rate(metric['tx_bytes']) > 76000) {
+              return new AlarmStatus(CRITICAL, "Network transmit rate on eth0 is above your critical threshold of 76000B/s");
+            }
+            if (rate(metric['tx_bytes']) > 56000) {
+              return new AlarmStatus(WARNING, "Network transmit rate on eth0 is above your warning threshold of 56000B/s");
+            }
+            return new AlarmStatus(OK, "Network transmit rate on eth0 is below your warning threshold of 56000B/s");
