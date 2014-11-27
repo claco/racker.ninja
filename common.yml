@@ -1,6 +1,6 @@
 ---
 - name: Configure Servers
   hosts: all:!local
-  gather_facts: False
+  gather_facts: True
   roles:
     - common
