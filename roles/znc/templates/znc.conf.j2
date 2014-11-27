@@ -9,6 +9,7 @@
 // Also check http://en.znc.in/wiki/Configuration
 
 AnonIPLimit = 10
+BindHost = 0.0.0.0
 ConnectDelay = 5
 LoadModule = webadmin
 MaxBufferSize = 500
@@ -34,6 +35,7 @@ Version = 1.4
   AltNick = claco_
   AppendTimestamp = false
   AutoClearChanBuffer = true
+  BindHost = 0.0.0.0
   Buffer = 50
   ChanModes = +stn
   DenyLoadMod = false
@@ -52,6 +54,7 @@ Version = 1.4
   TimestampFormat = [%H:%M:%S]
 
   <Network freenode>
+    BindHost = 0.0.0.0
     FloodBurst = 4
     FloodRate = 1.00
     IRCConnectEnabled = true
@@ -75,6 +78,7 @@ Version = 1.4
   </Network>
 
   <Network rackspace>
+    BindHost = 0.0.0.0
     FloodBurst = 4
     FloodRate = 1.00
     IRCConnectEnabled = true
