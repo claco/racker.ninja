@@ -6,4 +6,5 @@
 - include: users.yml
 - include: ids.yml
 - include: irc.yml
+- include: jenkins.yml
 - include: monitoring.yml
