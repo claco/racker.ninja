@@ -1,2 +1,13 @@
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Start(ing|ed) Session [[:alnum:].:]+ of user (logcheck|root).$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: pam_unix\(systemd-user:session\): session opened for user logcheck by \(uid=0\)$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: pam_unix\(systemd-user:session\): session closed for user logcheck$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Start(ing|ed) Cleanup of Temporary Directories(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Stopping (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Stopped (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Started (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Starting (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Created (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Reached (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Received (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Removed (.*)(\.)+$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Startup finished in (.*)(\.)+$

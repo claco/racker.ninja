@@ -3,6 +3,7 @@
 - name: Install Packages
   yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
+    - rsyslog
     - logcheck
 
 - name: Configure LogCheck
@@ -21,3 +22,6 @@
 
 - name: Add logcheck to /var/log/secure
   acl: name=/var/log/secure entity=logcheck etype=user permissions=r state=present
+
+- name: Configure LogCheck Cron Job
+  template: src=cron.d/logcheck.j2 dest=/etc/cron.d/logcheck owner=root group=root mode=0644

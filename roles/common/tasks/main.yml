@@ -1,8 +1,8 @@
 ---
 # tasks file for roles/common
-- name: Cusotmize Updates Repo
-  template: src=fedora-updates.repo.j2 dest=/etc/yum.repos.d/fedora-updates.repo
-  when: ansible_distribution == "Fedora"
+#- name: Customize Updates Repo
+  #template: src=fedora-updates.repo.j2 dest=/etc/yum.repos.d/fedora-updates.repo
+  #when: ansible_distribution == "Fedora"
 
 - name: Check if upgraded file exists
   stat: path=/root/.ansible.yum.upgraded
