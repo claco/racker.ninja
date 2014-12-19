@@ -3,5 +3,5 @@
   hosts: all:!local
   gather_facts: False
   roles:
-    - fail2ban
-    - logcheck
+    - { role: fail2ban, tags: fail2ban }
+    - { role: logcheck, tags: logcheck }
