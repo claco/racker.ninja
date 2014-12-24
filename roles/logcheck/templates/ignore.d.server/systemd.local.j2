@@ -1,6 +1,7 @@
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Start(ing|ed) Session [[:alnum:].:]+ of user (logcheck|root).$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: pam_unix\(systemd-user:session\): session opened for user logcheck by \(uid=0\)$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: pam_unix\(systemd-user:session\): session opened for user root by \(uid=0\)$
+^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: pam_unix(systemd-user:session): session closed for user root$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: pam_unix\(systemd-user:session\): session closed for user logcheck$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Start(ing|ed) Cleanup of Temporary Directories(\.)+$
 ^\w{3} [ :0-9]{11} [._[:alnum:]-]+ systemd: Stopping (.*)(\.)+$
