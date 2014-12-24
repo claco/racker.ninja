@@ -1,7 +1,8 @@
 ---
 - include: provision.yml
 - include: common.yml
-  include: ntp.yml
+- include: ssh.yml
+- include: ntp.yml
 - include: mail.yml
 - include: users.yml
 - include: ids.yml

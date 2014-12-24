@@ -1,0 +1,16 @@
+---
+# tasks file for roles/ssh
+- name: Install Packages
+  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  with_items:
+    - openssh
+
+- name: Enable SSH Service
+  service: name=sshd enabled=yes
+
+- name: Configure SSH Service
+  template: src=sshd_config.j2 dest=/etc/ssh/sshd_config owner=root group=root mode=0644
+  notify: Restart SSH
+
+- name: Start SSH Service
+  service: name=sshd state=started

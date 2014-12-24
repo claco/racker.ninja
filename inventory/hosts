@@ -1,0 +1,8 @@
+[local]
+localhost ansible_connection=local
+
+[jenkins]
+jenkins.racker.ninja
+
+[irc]
+irc.racker.ninja
