@@ -2,6 +2,7 @@
 - name: Configure Intrusion Detection
   hosts: all:!local
   gather_facts: False
+  sudo: yes
   roles:
     - { role: fail2ban, tags: fail2ban }
     - { role: logcheck, tags: logcheck }

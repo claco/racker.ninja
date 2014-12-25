@@ -2,6 +2,7 @@
 - name: Configure Users
   hosts: all:!local
   gather_facts: False
+  sudo: yes
   roles:
     - sudo
   tasks:

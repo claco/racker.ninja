@@ -2,5 +2,6 @@
 - name: Configure SSH
   hosts: all:!local
   gather_facts: False
+  sudo: yes
   roles:
     - ssh

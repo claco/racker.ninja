@@ -2,5 +2,6 @@
 - name: Configure Servers
   hosts: all:!local
   gather_facts: True
+  sudo: yes
   roles:
     - common

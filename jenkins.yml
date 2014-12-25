@@ -2,4 +2,5 @@
 - name: Configure Jenkins Server
   hosts: jenkins
   gather_facts: False
+  sudo: yes
   roles: []
