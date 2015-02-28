@@ -5,6 +5,8 @@
   with_items:
     - whois
     - ipset
+    - sendmail
+    - mail
     - fail2ban
 
 - name: Enable Fail2Ban Service
