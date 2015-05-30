@@ -1,10 +1,10 @@
 ---
 - include: provision.yml
 - include: common.yml
+- include: users.yml
 - include: ssh.yml
 - include: ntp.yml
 - include: mail.yml
-- include: users.yml
 - include: ids.yml
 - include: irc.yml
 - include: jenkins.yml

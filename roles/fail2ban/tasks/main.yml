@@ -6,7 +6,7 @@
     - whois
     - ipset
     - sendmail
-    - mail
+    - mailx
     - fail2ban
 
 - name: Enable Fail2Ban Service

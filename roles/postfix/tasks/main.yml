@@ -7,7 +7,7 @@
     - cyrus-sasl
     - cyrus-sasl-lib
     - cyrus-sasl-plain
-    - mail
+    - mailx
     - sendmail
 
 - name: Enable Postfix Service

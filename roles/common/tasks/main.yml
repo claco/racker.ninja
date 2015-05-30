@@ -4,6 +4,9 @@
   #template: src=fedora-updates.repo.j2 dest=/etc/yum.repos.d/fedora-updates.repo
   #when: ansible_distribution == "Fedora"
 
+- name: Install Yum Utils (until dnf conversion)
+  shell: dnf install -y yum-utils
+
 - name: Check if upgraded file exists
   stat: path=/root/.ansible.yum.upgraded
   changed_when: False
