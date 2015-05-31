@@ -1,14 +1,7 @@
 ---
 # tasks file for roles/common
-#- name: Customize Updates Repo
-  #template: src=fedora-updates.repo.j2 dest=/etc/yum.repos.d/fedora-updates.repo
-  #when: ansible_distribution == "Fedora"
-
-- name: Install Yum Utils (until dnf conversion)
-  shell: dnf install -y yum-utils
-
 - name: Check if upgraded file exists
-  stat: path=/root/.ansible.yum.upgraded
+  stat: path=/root/.ansible.znf.upgraded
   changed_when: False
   register: upgraded_file
 
@@ -17,11 +10,11 @@
   when: not upgraded_file.stat.exists or upgrade
 
 - name: Write upgraded file
-  command: touch /root/.ansible.yum.upgraded
+  command: touch /root/.ansible.znf.upgraded
   when: not upgraded_file.stat.exists
 
 - name: Install Common Packages
-  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  dnf: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
     - gpg
     - htop

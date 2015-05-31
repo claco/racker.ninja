@@ -1,7 +1,7 @@
 ---
 # tasks file for roles/ntp
 - name: Install Packages
-  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  dnf: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
     - ntp
 

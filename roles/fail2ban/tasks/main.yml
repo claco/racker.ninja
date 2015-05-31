@@ -1,7 +1,7 @@
 ---
 # tasks file for roles/fail2ban
 - name: Install Packages
-  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  dnf: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
     - whois
     - ipset

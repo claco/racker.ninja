@@ -7,7 +7,7 @@
   template: src=rackspace-cloud-monitoring.repo.j2 dest=/etc/yum.repos.d/rackspace-cloud-monitoring.repo owner=root group=root mode=0644
 
 - name: Install Packages
-  yum: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
+  dnf: pkg={{ item }} state={% if upgrade %}latest{% else %}present{% endif %}
   with_items:
     - rackspace-monitoring-agent
   register: monitoring_packages
