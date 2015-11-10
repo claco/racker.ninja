@@ -2,3 +2,8 @@
 ^\w{3} [ :0-9]{11} irc audit: .* acct=\"logcheck\" .*$
 ^\w{3} [ :0-9]{11} irc audit: .* comm=\"systemd\" exe=\"/usr/lib/systemd/systemd\" .*$
 ^\w{3} [ :0-9]{11} irc systemd: Cannot add dependency job for unit tmp.mount, ignoring: Unit tmp.mount is masked.$
+^.*USER_AVC .*Unknown permission start for class system.*$
+^.*USER_AVC .*Unknown permission stop for class system.*$
+^.*(CRED_ACQ|CRED_DISP|CRED_REFR|USER_START|USER_ACCT|USER_END) .* acct=\"logcheck\" .*$
+^.*(CRYPTO_SESSION|CRYPTO_KEY_USER|USER_ERR) .* exe=\"/usr/sbin/sshd\" .*$
+^.*(SERVICE_START|SERVICE_STOP) .* comm=\"systemd\" exe=\"/usr/lib/systemd/systemd\" .*$
