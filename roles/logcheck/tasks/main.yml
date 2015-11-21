@@ -16,6 +16,7 @@
     - systemd
     - auditd
     - rsyslogd
+    - dnf
 
 - name: Add logcheck to /var/log/messages
   acl: name=/var/log/messages entity=logcheck etype=user permissions=r state=present
