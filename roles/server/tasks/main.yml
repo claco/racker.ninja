@@ -23,6 +23,7 @@
 - name: Add Server to Inventory
   add_host: name={{ item.accessIPv4 }} groups={{ server_group }} region={{ server_region }}
   with_items: servers.instances
+  changed_when: False
 
 - name: Add Server to Forward DNS
   rax_dns_record:
